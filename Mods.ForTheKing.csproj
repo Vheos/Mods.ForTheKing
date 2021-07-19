@@ -73,7 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Main.cs" />
-    <Compile Include="Mods\Targeting.cs" />
+    <Compile Include="Mods\Cheats.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Tools\Extensions\Tools.Extensions.csproj">
