@@ -30,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28.NET 3.5%29|AnyCPU'">
     <OutputPath>D:\Multiplayer\For the King\BepInEx\plugins\Vheos\</OutputPath>
@@ -40,6 +41,10 @@
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
@@ -73,6 +78,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Main.cs" />
+    <Compile Include="Mods\Debug.cs" />
+    <Compile Include="Mods\Various.cs" />
     <Compile Include="Mods\Cheats.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -90,4 +97,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>start "" "D:\Multiplayer\For the King\FTK.exe"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
