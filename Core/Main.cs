@@ -3,7 +3,7 @@
     using System;
     using System.Reflection;
     using BepInEx;
-    using Vheos.Tools.ModdingCore;
+    using Tools.ModdingCore;
     [BepInDependency("com.bepis.bepinex.configurationmanager", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInPlugin(GUID, NAME, VERSION)]
     public class Main : BepInExEntryPoint
@@ -20,5 +20,11 @@
         override public void Initialize()
         {
         }
+        override public Type[] ModsOrderingList => new[]
+        {
+            typeof(Various),
+            typeof(Cheats),
+            typeof(Debug),
+        };
     }
 }
