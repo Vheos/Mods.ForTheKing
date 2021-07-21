@@ -78,7 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Main.cs" />
-    <Compile Include="Mods\Debug.cs" />
+    <Compile Include="Mods\Development\Debug.cs" />
     <Compile Include="Mods\Various.cs" />
     <Compile Include="Mods\Cheats.cs" />
   </ItemGroup>
