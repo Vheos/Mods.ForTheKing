@@ -1,7 +1,7 @@
 ﻿namespace Vheos.Mods.ForTheKing
 {
     using HarmonyLib;
-    using Vheos.Tools.ModdingCore;
+    using Tools.ModdingCore;
     public class Cheats : AMod
     {
         // Setting
