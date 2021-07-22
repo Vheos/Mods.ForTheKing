@@ -23,6 +23,8 @@
         override public Type[] ModsOrderingList => new[]
         {
             typeof(Various),
+            typeof(Stats),
+            typeof(Restores),
             typeof(Cheats),
             typeof(Debug),
         };
