@@ -77,12 +77,13 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\ModSections.cs" />
     <Compile Include="Core\Main.cs" />
     <Compile Include="Mods\Development\Debug.cs" />
     <Compile Include="Mods\Restores.cs" />
     <Compile Include="Mods\Stats.cs" />
     <Compile Include="Mods\Various.cs" />
-    <Compile Include="Mods\Cheats.cs" />
+    <Compile Include="Mods\Development\Cheats.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Tools\Extensions\Tools.Extensions.csproj">
