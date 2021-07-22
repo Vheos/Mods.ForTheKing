@@ -54,13 +54,15 @@
             _levelUpFocusGain.Format("Level up focus gain");
             _levelUpFocusGain.Description = "How many focus points you get when leveling up";
             // Revive
-            _reviveHealthGain.Format("Revive up health gain");
+            _reviveHealthGain.Format("Revive health gain");
             _reviveHealthGain.Description = "How much health (% of max) you get after being revived";
-            _reviveFocusGain.Format("Revive up focus gain");
+            _reviveFocusGain.Format("Revive focus gain");
             _reviveFocusGain.Description = "How many focus points you get after being revived";
             // Sanctum
             _sanctumRestores.Format("Sanctum restores");
         }
+        override protected string SectionOverride
+        => ModSections.Rebalance;
 
         // Logic
 #pragma warning disable IDE0051 // Remove unused private members
