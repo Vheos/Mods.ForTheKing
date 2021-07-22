@@ -23,10 +23,14 @@
         override protected void SetFormatting()
         {
             _maxHealthFormulaCoeffs.Format("Max health formula coefficients");
+            _maxHealthFormulaCoeffs.Description = "X   -   base value\n" +
+                                                  "Y   -   fixed increase per level\n" +
+                                                  "Z   -   % of vitality per level\n" +
+                                                  "W   -   levels count offset";
             _customDefenseFormulas.Format("Custom defense formulas");
             _customDefenseFormulas.Description = "Gain 1 Armor for every 10 points of Strength above 50\n" +
                                                  "Gain 1 Resistance for every 10 points of Intelligence above 50\n" +
-                                                 "Gain 1 Evasion for every 2 points of Speed above 50\n";
+                                                 "Gain 1 Evasion for every 2 points of Speed above 50";
         }
 
         // Logic
