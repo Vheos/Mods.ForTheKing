@@ -150,7 +150,6 @@
             #endregion
 
             stat += level.Add(_levelUpStatsOffset).Div(_levelUpStats).RoundDown().Div(100);
-            stat = stat.Round(2);
         }
 
         [HarmonyPatch(typeof(CharacterStats), "RawAwareness", MethodType.Getter), HarmonyPostfix]
@@ -187,6 +186,10 @@
 
             TryLevelUpStat(ref __result, __instance.m_PlayerLevel);
         }
+
+        [HarmonyPatch(typeof(CharacterStats), "GetSkillDisplay"), HarmonyPostfix]
+        static private void CharacterStats_GetSkillDisplay_Post(CharacterStats __instance, ref CharacterStats.SkillDisplay __result, FTK_weaponStats2.SkillType _skill)
+        => __result.m_Value = __instance.GetSkillValue(_skill, false, 0f).Mul(100f).Round().ToString();
         #endregion
 
         #region Modify damage
