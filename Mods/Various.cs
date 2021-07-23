@@ -53,10 +53,10 @@
 
         #region Remove "Discard"
         [HarmonyPatch(typeof(EncounterSessionMC), "VoteNextQueue"), HarmonyPostfix]
-        static private void EncounterSessionMC_VoteNextQueue_Post(ref bool __result)
+        static private void EncounterSessionMC_VoteNextQueue_Post(EncounterSessionMC __instance, ref bool __result)
         {
             #region quit
-            if (!_removeDiscardOption)
+            if (!_removeDiscardOption || __instance.m_VoteType != EncounterSessionMC.VoteType.Loot)
                 return;
             #endregion
 
