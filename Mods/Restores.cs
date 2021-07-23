@@ -94,7 +94,7 @@
         #region Revive
         static private void SetReviveGains()
         {
-            GameFlow.Instance.GameDif.m_ReviveMaxHealthGain = _reviveHealthGain;
+            GameFlow.Instance.GameDif.m_ReviveMaxHealthGain = _reviveHealthGain / 100f;
             GameFlow.Instance.GameDif.m_ReviveFocusGain = _reviveFocusGain;
         }
 
