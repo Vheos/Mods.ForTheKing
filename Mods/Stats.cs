@@ -22,6 +22,8 @@
         static private ModSetting<int> _levelUpDamage;
         static private ModSetting<int> _levelUpDamageOffset;
         static private ModSetting<bool> _dontModifyGlassWeapons;
+        static private ModSetting<bool> _retainFocusOnDeath;
+        static private ModSetting<int> _extraHoboLuck;
         override protected void Initialize()
         {
             _maxHealthFormulaCoeffs = CreateSetting(nameof(_maxHealthFormulaCoeffs), new Vector4(24, 1, 10, 1));
@@ -35,6 +37,9 @@
             _levelUpDamage = CreateSetting(nameof(_levelUpDamage), 1, IntRange(0, 3));
             _levelUpDamageOffset = CreateSetting(nameof(_levelUpDamageOffset), 0, IntRange(-9, 9));
             _dontModifyGlassWeapons = CreateSetting(nameof(_dontModifyGlassWeapons), true);
+
+            _retainFocusOnDeath = CreateSetting(nameof(_retainFocusOnDeath), false);
+            _extraHoboLuck = CreateSetting(nameof(_extraHoboLuck), 0, IntRange(-25, +25));
 
             // Events
             _maxHealthFormulaCoeffs.AddEvent(() => _maxHealthFormulaCoeffs.SetSilently(_maxHealthFormulaCoeffs.Value.RoundDown()));
@@ -70,6 +75,9 @@
                 _dontModifyGlassWeapons.Format("don't modify glass weapons", _levelUpDamage, () => _levelUpDamage != 0);
                 Indent--;
             }
+
+            _retainFocusOnDeath.Format("Retain focus on death");
+            _extraHoboLuck.Format("Extra hobo luck");
 
         }
         override protected string SectionOverride
@@ -231,6 +239,43 @@
             // Return
             __result = damage.Round();
             return false;
+        }
+        #endregion
+
+        #region Extra hobo luck
+        [HarmonyPatch(typeof(CharacterStats), "RawLuck", MethodType.Getter), HarmonyPostfix]
+        static private void CharacterStats_RawLuck_Post2(CharacterStats __instance, ref float __result)
+        {
+            #region quit
+            if (__instance.m_CharacterClass != FTK_playerGameStart.ID.hobo)
+                return;
+            #endregion
+
+            __result += _extraHoboLuck / 100f;
+        }
+        #endregion
+
+        #region Retain focus on death
+        [HarmonyPatch(typeof(CharacterOverworld), "SetDeath"), HarmonyPrefix]
+        static private void CharacterOverworld_SetDeath_Pre(CharacterOverworld __instance, ref int __state)
+        {
+            #region quit
+            if (!_retainFocusOnDeath)
+                return;
+            #endregion
+
+            __state = __instance.m_CharacterStats.m_FocusPoints;
+        }
+
+        [HarmonyPatch(typeof(CharacterOverworld), "SetDeath"), HarmonyPostfix]
+        static private void CharacterOverworld_SetDeath_Post(CharacterOverworld __instance, ref int __state)
+        {
+            #region quit
+            if (!_retainFocusOnDeath)
+                return;
+            #endregion
+
+            __instance.m_CharacterStats.m_FocusPoints = __state;
         }
         #endregion
     }
