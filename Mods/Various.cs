@@ -1,14 +1,14 @@
 ﻿namespace Vheos.Mods.ForTheKing
 {
+    using System;
+    using System.Collections.Generic;
     using HarmonyLib;
     using UnityEngine;
     using Tools.ModdingCore;
     using Tools.UtilityNS;
     using Tools.Extensions.General;
     using Tools.Extensions.Math;
-    using Tools.Extensions.Math.Unity;
     using GridEditor;
-
     public class Various : AMod
     {
         // Setting
@@ -18,6 +18,10 @@
         static private ModSetting<int> _overrideInflation;
         static private ModSetting<bool> _smoothInflationProgress;
         static private ModSetting<Vector3> _overridePipePrices;
+        static private ModSetting<bool> _equipCostsAction;
+        static private ModSetting<FreeEquipSpots> _freeEquipSpots;
+        static private ModSetting<bool> _equipRequiresActiveTurn;
+        static private ModSetting<bool> _freeLoreShop;
         override protected void Initialize()
         {
             _skipStartup = CreateSetting(nameof(_skipStartup), false);
@@ -26,6 +30,10 @@
             _overrideInflation = CreateSetting(nameof(_overrideInflation), -1, IntRange(-1, 200));
             _smoothInflationProgress = CreateSetting(nameof(_smoothInflationProgress), false);
             _overridePipePrices = CreateSetting(nameof(_overridePipePrices), -1.ToVector3());
+            _equipCostsAction = CreateSetting(nameof(_equipCostsAction), false);
+            _freeEquipSpots = CreateSetting(nameof(_freeEquipSpots), (FreeEquipSpots)0);
+            _equipRequiresActiveTurn = CreateSetting(nameof(_equipRequiresActiveTurn), false);
+            _freeLoreShop = CreateSetting(nameof(_freeLoreShop), false);
         }
         override protected void SetFormatting()
         {
@@ -35,6 +43,14 @@
             _overrideInflation.Format("Override inflation");
             _smoothInflationProgress.Format("Smooth inflation progress");
             _overridePipePrices.Format("Override pipe prices");
+            _equipCostsAction.Format("\"Equip\" costs action");
+            Indent++;
+            {
+                _freeEquipSpots.Format("free spots", _equipCostsAction);
+                _equipRequiresActiveTurn.Format("requires active turn", _equipCostsAction);
+                Indent--;
+            }
+            _freeLoreShop.Format("Free lore shop");
         }
 
         // Logic
@@ -140,6 +156,67 @@
             }
             if (overrideValue != -1)
                 __instance._goldValue = overrideValue;
+        }
+        #endregion
+
+        #region Equip cost
+        [System.Flags]
+        private enum FreeEquipSpots
+        {
+            Town = 1 << 1,
+            Camp = 1 << 2,
+            Dungeon = 1 << 3,
+        }
+        static bool HasAnyActionPoints(CharacterOverworld character)
+        => character.m_CharacterStats.m_ActionPoints > 0;
+        static bool CheckActiveTurnRequirement(CharacterOverworld character)
+        => !_equipRequiresActiveTurn || character.m_CharacterStats.m_IsMyTurn;
+        static bool IsInFreeEquipSpot(CharacterOverworld character)
+        => _freeEquipSpots.Value.HasFlag(FreeEquipSpots.Town) && character.IsInTown()
+        || _freeEquipSpots.Value.HasFlag(FreeEquipSpots.Camp) && character.IsInSafeCamp()
+        || _freeEquipSpots.Value.HasFlag(FreeEquipSpots.Dungeon) && character.IsInDungeon();
+        [HarmonyPatch(typeof(uiPopupMenu), "ShowButton"), HarmonyPostfix]
+        static private void uiPopupMenu_ShowButton_Post(uiPopupMenu __instance, uiPopupMenu.Action _a, bool _interactable)
+        {
+            #region quit
+            if (!_equipCostsAction || _a != uiPopupMenu.Action.Equip || !_interactable)
+                return;
+            #endregion
+
+            uiPopupMenuButton button = __instance.m_Buttons[_a][0];
+            bool isInFreeEquipSpot = IsInFreeEquipSpot(__instance.m_Cow);
+            if (CheckActiveTurnRequirement(__instance.m_Cow)
+            && (HasAnyActionPoints(__instance.m_Cow) || isInFreeEquipSpot))
+            {
+                if (!isInFreeEquipSpot)
+                    button.m_Text.color = Color.red;
+                return;
+            }
+            button.SetEnable(false);
+        }
+
+        [HarmonyPatch(typeof(uiPopupMenu), "ActionEquip"), HarmonyPostfix]
+        static private void uiPopupMenu_ActionEquip_Post(uiPopupMenu __instance)
+        {
+            #region quit
+            if (!_equipCostsAction || IsInFreeEquipSpot(__instance.m_Cow))
+                return;
+            #endregion
+
+            __instance.m_Cow.UpdatePlayerAction(-1);
+        }
+        #endregion
+
+        #region Free lore shop
+        [HarmonyPatch(typeof(FTK_loreItem), "GetLoreCost"), HarmonyPostfix]
+        static private void FTK_loreItem_CanAfford_Post(ref int __result)
+        {
+            #region quit
+            if (!_freeLoreShop)
+                return;
+            #endregion
+
+            __result = 0;
         }
         #endregion
     }
