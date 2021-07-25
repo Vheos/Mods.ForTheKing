@@ -1,15 +1,14 @@
 ﻿namespace Vheos.Mods.ForTheKing
 {
+    using System;
+    using System.Collections.Generic;
     using HarmonyLib;
     using UnityEngine;
     using Tools.ModdingCore;
     using Tools.UtilityNS;
     using Tools.Extensions.General;
     using Tools.Extensions.Math;
-    using Tools.Extensions.Math.Unity;
     using GridEditor;
-    using System.Collections.Generic;
-
     public class Stats : AMod
     {
         // Setting
