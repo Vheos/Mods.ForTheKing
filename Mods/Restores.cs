@@ -5,7 +5,7 @@
     using HarmonyLib;
     using UnityEngine;
     using Tools.ModdingCore;
-    using Tools.UtilityNS;
+    using Tools.UtilityN;
     using Tools.Extensions.General;
     using Tools.Extensions.Math;
     public class Restores : AMod
