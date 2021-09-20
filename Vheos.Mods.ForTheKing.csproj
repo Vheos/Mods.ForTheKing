@@ -81,17 +81,17 @@
     <Compile Include="Mods\Development\Cheats.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Tools\Extensions\Tools.Extensions.csproj">
+    <ProjectReference Include="..\..\Tools\Extensions\Vheos.Tools.Extensions.csproj">
       <Project>{4afe5e8c-29c0-4389-aaa0-55584146becf}</Project>
-      <Name>Tools.Extensions</Name>
+      <Name>Vheos.Tools.Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Tools\ModdingCore\Tools.ModdingCore.csproj">
+    <ProjectReference Include="..\..\Tools\ModdingCore\Vheos.Tools.ModdingCore.csproj">
       <Project>{a48747d8-e698-4c2c-bf11-0efed7d79ef0}</Project>
-      <Name>Tools.ModdingCore</Name>
+      <Name>Vheos.Tools.ModdingCore</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Tools\Utility\Tools.Utility.csproj">
+    <ProjectReference Include="..\..\Tools\Utility\Vheos.Tools.Utility.csproj">
       <Project>{96d2cdb1-5ee9-4666-812d-9ecb8df005c4}</Project>
-      <Name>Tools.Utility</Name>
+      <Name>Vheos.Tools.Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
