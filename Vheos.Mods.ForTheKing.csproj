@@ -7,8 +7,8 @@
     <ProjectGuid>{9A6405C4-076C-49B7-823F-79A444637376}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Mods.ForTheKing</RootNamespace>
-    <AssemblyName>Mods.ForTheKing</AssemblyName>
+    <RootNamespace>Vheos.Mods.ForTheKing</RootNamespace>
+    <AssemblyName>Vheos.Mods.ForTheKing</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
