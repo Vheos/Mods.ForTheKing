@@ -24,11 +24,11 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_UNITY_NET35|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_UNITY_2018_NET35|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>D:\Multiplayer\For the King\BepInEx\plugins\Vheos\</OutputPath>
-    <DefineConstants>TRACE;UNITY, NET35</DefineConstants>
+    <DefineConstants>TRACE;UNITY, UNITY2018, NET35</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
