@@ -3,7 +3,7 @@
     using System;
     using System.Reflection;
     using BepInEx;
-    using Tools.ModdingCore;
+    using Mods.Core;
     [BepInDependency("com.bepis.bepinex.configurationmanager", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInPlugin(GUID, NAME, VERSION)]
     public class Main : BepInExEntryPoint
@@ -15,12 +15,12 @@
         #endregion
 
         // User logic
-        override public Assembly CurrentAssembly
+        override protected Assembly CurrentAssembly
         => Assembly.GetExecutingAssembly();
-        override public void Initialize()
+        override protected void Initialize()
         {
         }
-        override public Type[] ModsOrderingList => new[]
+        override protected Type[] ModsOrderingList => new[]
         {
             typeof(Various),
             typeof(Stats),

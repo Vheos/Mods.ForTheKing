@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using HarmonyLib;
     using UnityEngine;
-    using Tools.ModdingCore;
+    using Mods.Core;
     using Tools.UtilityN;
     using Tools.Extensions.General;
     using Tools.Extensions.Math;
@@ -59,20 +59,18 @@
             _levelUpStats.Format("Level up stats");
             _levelUpStats.Description = "Gain +1 to all stats for every X levels\n" +
                                         "(set to 0 to disable)";
-            Indent++;
+            using(Indent)
             {
-                _levelUpStatsOffset.Format("level offset", _levelUpStats, () => _levelUpStats != 0);
-                _dontModifyLuck.Format("don't modify luck", _levelUpStats, () => _levelUpStats != 0);
-                Indent--;
+                _levelUpStatsOffset.Format("level offset", _levelUpStats, t => t != 0);
+                _dontModifyLuck.Format("don't modify luck", _levelUpStats, t => t != 0);
             }
             _levelUpDamage.Format("Level up damage");
             _levelUpDamage.Description = "Gain +1 to all damage for every X levels\n" +
                                          "(set to 0 to disable)";
-            Indent++;
+            using(Indent)
             {
-                _levelUpDamageOffset.Format("level offset", _levelUpDamage, () => _levelUpDamage != 0);
-                _dontModifyGlassWeapons.Format("don't modify glass weapons", _levelUpDamage, () => _levelUpDamage != 0);
-                Indent--;
+                _levelUpDamageOffset.Format("level offset", _levelUpDamage, t => t != 0);
+                _dontModifyGlassWeapons.Format("don't modify glass weapons", _levelUpDamage, t => t != 0);
             }
 
             _retainFocusOnDeath.Format("Retain focus on death");
@@ -83,7 +81,7 @@
         => ModSections.Rebalance;
 
         // Logic
-#pragma warning disable IDE0051 // Remove unused private members
+#pragma warning disable IDE0051, IDE0060, IDE1006
 
         #region Custom max health
         [HarmonyPatch(typeof(CharacterStats), "TallyCharacterHealth"), HarmonyPrefix]

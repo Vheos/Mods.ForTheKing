@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using HarmonyLib;
     using UnityEngine;
-    using Tools.ModdingCore;
+    using Mods.Core;
     using Tools.UtilityN;
     using Tools.Extensions.General;
     using Tools.Extensions.Math;
@@ -36,11 +36,10 @@
             // Inn
             _innHealthGain.Format("Inn health gain");
             _innHealthGain.Description = "How much health (% of max) you get when resting at inn or camp";
-            Indent++;
+            using(Indent)
             {
                 _innHealthGainPercentOfMissing.Format("is % of missing health");
                 _innHealthGainPercentOfMissing.Description = "Use missing health (instead of max) as the coefficient";
-                Indent--;
             }
             _innFocusGain.Format("Inn focus gain");
             _innFocusGain.Description = "How many focus points you get when resting at inn or camp";
@@ -66,7 +65,7 @@
         => ModSections.Rebalance;
 
         // Logic
-#pragma warning disable IDE0051 // Remove unused private members
+#pragma warning disable IDE0051, IDE0060, IDE1006
 
         #region Inn
         [HarmonyPatch(typeof(CharacterOverworld), "GetInnHealAmount"), HarmonyPostfix]

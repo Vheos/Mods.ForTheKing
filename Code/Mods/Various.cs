@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using HarmonyLib;
     using UnityEngine;
-    using Tools.ModdingCore;
+    using Mods.Core;
     using Tools.UtilityN;
     using Tools.Extensions.General;
     using Tools.Extensions.Math;
@@ -44,17 +44,16 @@
             _smoothInflationProgress.Format("Smooth inflation progress");
             _overridePipePrices.Format("Override pipe prices");
             _equipCostsAction.Format("\"Equip\" costs action");
-            Indent++;
+            using(Indent)
             {
                 _freeEquipSpots.Format("free spots", _equipCostsAction);
                 _equipRequiresActiveTurn.Format("requires active turn", _equipCostsAction);
-                Indent--;
             }
             _freeLoreShop.Format("Free lore shop");
         }
 
         // Logic
-#pragma warning disable IDE0051 // Remove unused private members
+#pragma warning disable IDE0051, IDE0060, IDE1006
 
         #region Skip startup
         [HarmonyPatch(typeof(SplashScreen), "GetAnyButton"), HarmonyPostfix]
