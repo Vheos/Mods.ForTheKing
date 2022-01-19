@@ -9,89 +9,65 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Vheos.Mods.ForTheKing</RootNamespace>
     <AssemblyName>Vheos.Mods.ForTheKing</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '-|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\-\</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-    <DocumentationFile>bin\-\Vheos.Mods.ForTheKing.xml</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'RELEASE_UNITY_2018_NET35|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\UNITY_2018_NET35\</OutputPath>
-    <DefineConstants>TRACE;RELEASE, UNITY, UNITY2018, NET35</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '-|AnyCPU'">
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup>
-    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DEBUG_UNITY_2018_NET35|AnyCPU' ">
-    <OutputPath>bin\UNITY_2018_NET35\</OutputPath>
-    <DefineConstants>TRACE;DEBUG, UNITY, UNITY2018, NET35</DefineConstants>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UNITY_NET35|AnyCPU' ">
+    <OutputPath>bin\UNITY_NET35\</OutputPath>
+    <DocumentationFile>bin\UNITY_NET35\Vheos.Tools.ForTheKing.xml</DocumentationFile>
+    <DefineConstants>DEBUG;UNITY;NET35</DefineConstants>
+    <LangVersion>9.0</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'RELEASE_UNITY_NET35|AnyCPU' ">
+    <OutputPath>bin\UNITY_NET35\</OutputPath>
+    <DocumentationFile>bin\UNITY_NET35\Vheos.Tools.ForTheKing.xml</DocumentationFile>
+    <DefineConstants>UNITY;NET35</DefineConstants>
+    <LangVersion>9.0</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>..\..\Libraries\BepInEx (v5.4.11)\0Harmony.dll</HintPath>
+    <Reference Include="Assembly-CSharp_publicized">
+      <HintPath>Private\Libraries\v1.1.00.11347\Assembly-CSharp_publicized.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>D:\Multiplayer\For the King\FTK_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+      <HintPath>Private\Libraries\v1.1.00.11347\Assembly-CSharp-firstpass.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Assembly-CSharp_publicized">
-      <HintPath>[] DATA\Assembly-CSharp_publicized.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="BepInEx">
-      <HintPath>..\..\Libraries\BepInEx (v5.4.11)\BepInEx.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System" />
     <Reference Include="UnityEngine">
-      <HintPath>D:\Multiplayer\For the King\FTK_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>Private\Libraries\v1.1.00.11347\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>D:\Multiplayer\For the King\FTK_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>Private\Libraries\v1.1.00.11347\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>D:\Multiplayer\For the King\FTK_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <HintPath>Private\Libraries\v1.1.00.11347\UnityEngine.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>..\Core\Private\Libraries\BepInEx.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>..\Core\Private\Libraries\0Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Core\ModSections.cs" />
-    <Compile Include="Core\Main.cs" />
-    <Compile Include="Mods\Development\Debug.cs" />
-    <Compile Include="Mods\Restores.cs" />
-    <Compile Include="Mods\Stats.cs" />
-    <Compile Include="Mods\Various.cs" />
-    <Compile Include="Mods\Development\Cheats.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Tools\Extensions\Vheos.Tools.Extensions.csproj">
@@ -99,19 +75,55 @@
       <Name>Vheos.Tools.Extensions</Name>
       <Private>True</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Tools\ModdingCore\Vheos.Tools.ModdingCore.csproj">
-      <Project>{a48747d8-e698-4c2c-bf11-0efed7d79ef0}</Project>
-      <Name>Vheos.Tools.ModdingCore</Name>
-      <Private>True</Private>
-    </ProjectReference>
     <ProjectReference Include="..\..\Tools\Utility\Vheos.Tools.Utility.csproj">
       <Project>{96d2cdb1-5ee9-4666-812d-9ecb8df005c4}</Project>
       <Name>Vheos.Tools.Utility</Name>
       <Private>True</Private>
     </ProjectReference>
+    <ProjectReference Include="..\Core\Vheos.Mods.Core.csproj">
+      <Project>{a48747d8-e698-4c2c-bf11-0efed7d79ef0}</Project>
+      <Name>Vheos.Mods.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Code\Core\Main.cs" />
+    <Compile Include="Code\Core\ModSections.cs" />
+    <Compile Include="Code\Mods\Cheats.cs" />
+    <Compile Include="Code\Mods\Debug.cs" />
+    <Compile Include="Code\Mods\Restores.cs" />
+    <Compile Include="Code\Mods\Stats.cs" />
+    <Compile Include="Code\Mods\Various.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>start "" "D:\Multiplayer\For the King\FTK.exe"</PostBuildEvent>
+    <PostBuildEvent>:: Global settings
+set Plugins_Local=BepInEx\Plugins\Vheos\
+set Version_Suffix=_vX.Y.Z
+set TempCopy=$(ProjectDir)\bin\.tmpcpy\
+rd /s /q %25TempCopy%25
+xcopy /y $(TargetDir)$(TargetName).dll %25TempCopy%25
+xcopy /y $(TargetDir)Vheos.Mods.Core.dll %25TempCopy%25
+xcopy /y $(TargetDir)Vheos.Tools.Extensions.dll %25TempCopy%25
+xcopy /y $(TargetDir)Vheos.Tools.Utility.dll %25TempCopy%25
+
+    :: Project settings
+    set Game_Global="D:\Multiplayer\For the King\"
+    set Game_EXE=FTK.exe
+    set Zip_Name=FTK_Mods
+    set Releases_Global=E:\Creativity\Programs\C#\Mods\ForTheKing\Private\Releases\
+
+    if $(DefineConstants.Contains('DEBUG'))==True (
+        :: Debug
+        rd /s /q %25Game_Global%25%25Plugins_Local%25 
+        xcopy /e /y %25TempCopy%25 %25Game_Global%25%25Plugins_Local%25
+        start "" %25Game_Global%25%25Game_EXE%25
+
+    ) else if $(DefineConstants.Contains('DEBUG'))==False (        
+        :: Release
+        rd /s /q %25Releases_Global%25%25Plugins_Local%25 
+        xcopy /e /y %25TempCopy%25 %25Releases_Global%25%25Plugins_Local%25 
+        powershell Compress-Archive -Path %25Releases_Global%25\BepInEx -DestinationPath %25Releases_Global%25\%25Zip_Name%25%25Version_Suffix%25.zip -Force
+        
+    )</PostBuildEvent>
   </PropertyGroup>
 </Project>
